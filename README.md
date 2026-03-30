@@ -118,7 +118,7 @@ Demonstrates variables and command substitution.
 Navigate to the project folder:
 
 ```
-cd oss-audit-[your-roll-number]
+cd oss-audit-24BCY10218
 ```
 
 ### Step 2: Give Execute Permission
