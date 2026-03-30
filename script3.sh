@@ -1,30 +1,27 @@
 #!/bin/bash
-# Script 3: Disk and Permission Auditor
+
 
 DIRS=("/etc" "/var/log" "/home" "/usr/bin" "/tmp")
 
 echo "Directory Audit Report"
 echo "----------------------"
 
-for DIR in "${DIRS[@]}"
-do
-    if [ -d "$DIR" ]
-    then
+for DIR in "${DIRS[@]}"; do
+    if [ -d "$DIR" ]; then
         PERMS=$(ls -ld $DIR | awk '{print $1, $3, $4}')
         SIZE=$(du -sh $DIR 2>/dev/null | cut -f1)
-
         echo "$DIR => Permissions: $PERMS | Size: $SIZE"
     else
         echo "$DIR does not exist"
     fi
 done
 
-echo ""
-echo "Checking Python directory..."
-
-if [ -d "/usr/bin/python3" ]
-then
-    ls -l /usr/bin/python3
+# Firefox config check
+if [ -d "$HOME/.mozilla" ]; then
+    echo ""
+    echo "Firefox Config Directory Found:"
+    ls -ld $HOME/.mozilla
 else
-    echo "Python directory not found"
+    echo ""
+    echo "Firefox config directory not found"
 fi
